@@ -30,40 +30,42 @@ CREATE TABLE Students(
 	admission_date DATE NOT NULL,
 	major_and_minor VARCHAR (100) NOT NULL,
 	PRIMARY KEY (person_id),
-	FOREIGN KEY (person_id) REFERENCES person1 (person_id)
+	FOREIGN KEY (person_id) REFERENCES Person1(person_id)
 	);
 -----------------------------------------
 CREATE TABLE Undergraduates(
-	person_id CHAR(9) NOT NULL,
-	PRIMARY KEY (person_id),
-	FOREIGN KEY (person_id) REFERENCES person1(person_id)
-	);
+	studnet_person_id CHAR(9) NOT NULL,
+	PRIMARY KEY (student_person_id),
+	FOREIGN KEY (student_person_id) REFERENCES Person1(person_id)
+	); --if it doesn't work try changing REFERENCES Person1(person_id) to Students(person_id)
 -----------------------------------------
 CREATE TABLE Graduates(
 	student_person_id CHAR(9),
 	professor_person_id CHAR(9),
 	research_topic VARCHAR (100),
 	PRIMARY KEY (student_person_id, professor_person_id),
-	FOREIGN KEY (student_person_id) REFERENCES person1(person_id),
-	FOREIGN KEY (professor_person_id) REFERENCES person1(person_id)
-	);
+	FOREIGN KEY (student_person_id) REFERENCES Person1(person_id), --if it doesn't work try changing REFERENCES Person1(person_id) to Students(person_id)
+	FOREIGN KEY (professor_person_id) REFERENCES Person1(person_id) --if it doesn't work try changing REFERENCES Person1(person_id) to Professors(person_id)
+	); 
 -----------------------------------------
 CREATE TABLE Research(
-	person_id CHAR(9),
+	graduate_person_id CHAR(9),
 	school VARCHAR (100),
 	lab_name VARCHAR (100),
-	PRIMARY KEY (person_id, school, lab_name),
-	FOREIGN KEY (person_id) REFERENCES person1(person_id)
-	);
+	PRIMARY KEY (graduate_person_id, school, lab_name),
+	FOREIGN KEY (graduate_person_id) REFERENCES Person1(person_id)
+	--if it doesn't work try changing REFERENCES Person1(person_id) to Students(person_id)
+	); 
 -------------------------------------------
 CREATE TABLE Experiments(
-	student_person_id CHAR(9),
+	undergraduate_person_id CHAR(9),
 	school VARCHAR(100),
 	lab_name VARCHAR(100),
 	conduct_date DATETIME,
 	attendance CHAR(1),
-	PRIMARY KEY (student_person_id, school, lab_name),
-	FOREIGN KEY (student_person_id) REFERENCES person1(person_id)
+	PRIMARY KEY (undergraduate_person_id, school, lab_name),
+	FOREIGN KEY (undergraduate_person_id) REFERENCES person1(person_id)
+	--if it doesn't work try changing REFERENCES Person1(person_id) to Undergraduates(student_person_id)
 	);
 ----------------------------------------------
 CREATE TABLE Laboratories(
@@ -92,9 +94,10 @@ CREATE TABLE Equipments1(
 	lab_name VARCHAR (100),
 	id INT IDENTITY(1,1),
 	model_number VARCHAR (100),
-	date_purchased VARCHAR (100)
+	date_purchased DATE
 	PRIMARY KEY (lab_school, lab_name, id),
 	FOREIGN KEY (lab_school, lab_name) REFERENCES Laboratories(school, lab_name)
+	FOREIGN KEY (model_number) REFERENCES Equipments2(model_number)
 	);
 ---------------------------------------------------
 CREATE TABLE Equipments2(
@@ -106,10 +109,10 @@ CREATE TABLE Equipments2(
 CREATE TABLE Staffs(
 	person_id CHAR(9),
 	staff_id CHAR(9),
-	date_hired VARCHAR (100),
+	date_hired DATE,
 	position VARCHAR (100),
 	PRIMARY KEY (person_id),
-	FOREIGN KEY (person_id) REFERENCES Person1(person_id)
+	FOREIGN KEY (person_id) REFERENCES Person1(person_id) 
 	);
 --------------------------------------------------
 CREATE TABLE Administrative(
@@ -123,7 +126,7 @@ CREATE TABLE Technical(
 	school VARCHAR (100),
 	lab_name VARCHAR (100),
 	PRIMARY KEY (person_id, school, lab_name),
-	FOREIGN KEY (person_id) REFERENCES Person1(person_id),
+	FOREIGN KEY (person_id) REFERENCES Person1 (person_id),
 	FOREIGN KEY (school, lab_name) REFERENCES Laboratories (school, lab_name)
 	);
 ---------------------------------------------------
@@ -135,11 +138,11 @@ CREATE TABLE Stakeholders(
 	);
 --------------------------------------------------
 CREATE TABLE CommentSuggestions(
-	person_id CHAR(9),
+	stakeholder_person_id CHAR(9),
 	date_time DATETIME,
 	topic VARCHAR (100),
-	PRIMARY KEY (person_id,date_time),
-	FOREIGN KEY (person_id) REFERENCES Person1 (person_id)
+	PRIMARY KEY (stakeholder_person_id,date_time),
+	FOREIGN KEY (stakeholder_person_id) REFERENCES Person1 (person_id) -- if it doesn't work try changing to Stakeholders(person_id)
 	);
 -----------------------------------------------------
 CREATE TABLE Professors(
@@ -153,14 +156,13 @@ CREATE TABLE Courses(
 	professor_person_id CHAR(9),
 	PRIMARY KEY (id),
 	FOREIGN KEY (professor_person_id) REFERENCES Professors(person_id)
-
 	);
 --------------------------------------------------------
 CREATE TABLE Attend(
 	student_person_id CHAR(9),
 	course_id CHAR(6),
 	PRIMARY KEY (student_person_id,course_id),
-	FOREIGN KEY (student_person_id) REFERENCES person1 (person_id),
+	FOREIGN KEY (student_person_id) REFERENCES Person1 (person_id), -- if it doesn't work change it to Students(person_id)
 	FOREIGN KEY (course_id) REFERENCES Courses(id)
 	);
 ------------------------------------------------------
@@ -168,7 +170,7 @@ CREATE TABLE Timetables(
 	professor_person_id CHAR(9),
 	date_time DATETIME,
 	PRIMARY KEY (professor_person_id,date_time),
-	FOREIGN KEY (professor_person_id) REFERENCES person1 (person_id)
+	FOREIGN KEY (professor_person_id) REFERENCES Person1 (person_id)
 	);
 ------------------------------------------------------
 CREATE TABLE Contain(
