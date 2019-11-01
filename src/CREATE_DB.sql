@@ -89,6 +89,12 @@ CREATE TABLE TeachingLaboratories(
 	FOREIGN KEY (school, lab_name) REFERENCES Laboratories(school, lab_name)
 	);
 --------------------------------------------------
+CREATE TABLE Equipments2(
+	model_number VARCHAR (100),
+	name VARCHAR (100),
+	PRIMARY KEY (model_number)
+	);
+--------------------------------------------------
 CREATE TABLE Equipments1(
 	lab_school VARCHAR (100),
 	lab_name VARCHAR (100),
@@ -99,13 +105,7 @@ CREATE TABLE Equipments1(
 	FOREIGN KEY (lab_school, lab_name) REFERENCES Laboratories(school, lab_name)
 	FOREIGN KEY (model_number) REFERENCES Equipments2(model_number)
 	);
----------------------------------------------------
-CREATE TABLE Equipments2(
-	model_number VARCHAR (100),
-	name VARCHAR (100),
-	PRIMARY KEY (model_number)
-	);
----------------------------------------------------
+------------------------------------
 CREATE TABLE Staffs(
 	person_id CHAR(9),
 	staff_id CHAR(9),
