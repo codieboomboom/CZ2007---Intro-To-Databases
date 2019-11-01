@@ -27,7 +27,7 @@ CREATE TABLE Person1 (
 CREATE TABLE Students(
 	person_id CHAR(9) NOT NULL,
 	student_id CHAR(9) NOT NULL UNIQUE,
-	admission_date DATETIME NOT NULL,
+	admission_date DATE NOT NULL,
 	major_and_minor VARCHAR (100) NOT NULL,
 	PRIMARY KEY (person_id),
 	FOREIGN KEY (person_id) REFERENCES person1 (person_id)
