@@ -16,9 +16,9 @@ INSERT INTO Laboratories VALUES('HSS', 'Computer Lab 1', 'HSS-02-34 14 Nanyang D
 INSERT INTO Laboratories VALUES('MAE', 'Maker Lab', 'N2-B1c-13, Nanyang Ave, Singapore 645698');
 
 -- Research Labs
-INSERT INTO Laboratories VALUES('SCSE', 'Data Management and Analytics La', 'N4-01C-12, Nanyang Ave Singapore 639798');
+INSERT INTO Laboratories VALUES('SCSE', 'Data Management and Analytics Lab', 'N4-01C-12, Nanyang Ave Singapore 639798');
 INSERT INTO Laboratories VALUES('SCSE', 'Computational Intelligence Lab', 'N4-B1C-02, Nanyang Ave Singapore 639798');
 INSERT INTO Laboratories VALUES('CEE', 'Environment Laboratory', 'N3-01a-11, Nanyang Ave, Singapore 634512');
 INSERT INTO Laboratories VALUES('NBS', 'Communication Laboratory 1', 'N2-B1a-02, Nanyang Ave, Singapore 645698');
 INSERT INTO Laboratories VALUES('SCBE', 'NTU Food Technology Centre', 'N3-01c-12, Nanyang Ave, Singapore 634512');
-INSERT INTO Laboratories VALUES('MAE', 'ST Engineering-NTU Corporate Lab', '');
+INSERT INTO Laboratories VALUES('MAE', 'ST Engineering-NTU Corporate Lab', 'S1-B4a-03, Nanyang Avenue, Singapore 639798');
