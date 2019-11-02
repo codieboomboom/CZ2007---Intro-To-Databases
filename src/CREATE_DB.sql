@@ -63,7 +63,7 @@ CREATE TABLE Experiments(
 	lab_name VARCHAR(100),
 	conduct_date DATETIME,
 	attendance CHAR(1),
-	PRIMARY KEY (undergraduate_person_id, school, lab_name),
+	PRIMARY KEY (undergraduate_person_id, school, lab_name, conduct_date),
 	FOREIGN KEY (undergraduate_person_id) REFERENCES person1(person_id)
 	--if it doesn't work try changing REFERENCES Person1(person_id) to Undergraduates(student_person_id)
 	);
