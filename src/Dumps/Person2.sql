@@ -32,3 +32,20 @@ INSERT INTO Person2 VALUES('Blk 52 Davevale Crescent', '652233', 'Singapore', 'S
 INSERT INTO Person2 VALUES('403 Ang Mo Kio Ind Pk 1 #01-337', '503537', 'Singapore', 'Singapore');
 INSERT INTO Person2 VALUES('222 Dunearn Road #05-03 Simei Derby Centre', '580472', 'Singapore', 'Singapore');
 INSERT INTO Person2 VALUES('10 Crescent Telok Ayer', '131144', 'Singapore', 'Singapore');
+
+
+
+--Stakeholders
+INSERT INTO Person2 VALUES ('6 Boeing Avenue 3 BS Logistics Hub', '632305', 'Singapore', 'Singapore');
+INSERT INTO Person2 VALUES('79 Johnson Road #15-04 Poen Building', '013897', 'Singapore', 'Singapore');
+INSERT INTO Person2 VALUES('5 East Bridge road 19-04 High street centre', '123094', 'Singapore', 'Singapore');
+INSERT INTO Person2 VALUES('2 Malay Road 02-12', '238455', 'Singapore', 'Singapore');
+INSERT INTO Person2 VALUES('84 Tuas North Street 5 06-20', '486132', 'Singapore', 'Singapore');
+
+
+--Professors
+INSERT INTO Person2 VALUES ('5 North Avenue 3 BS Logistics Hub', '639105', 'Singapore', 'Singapore');
+INSERT INTO Person2 VALUES('79 Pulitzer Road #15-04 CPF Building', '062297', 'Singapore', 'Singapore');
+INSERT INTO Person2 VALUES('1 West bridge road 19-04 high street centre', '133094', 'Singapore', 'Singapore');
+INSERT INTO Person2 VALUES('93 Kuala Road 02-12', '234465', 'Singapore', 'Singapore');
+INSERT INTO Person2 VALUES('43 Changi North Street 5 06-20', '485532', 'Singapore', 'Singapore');
