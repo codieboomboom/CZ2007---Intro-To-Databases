@@ -102,8 +102,8 @@ INSERT INTO Equipments1 (lab_school, lab_name, id, model_number, date_purchased)
 
 
 --'SCBE', 'NTU Food Technology Centre'
-INSERT INTO Equipments1 (lab_school, lab_name, id, model_number, date_purchased) VALUES ('SCBE','Communication Laboratory 1',0001,'10003','2002-03-01');
-INSERT INTO Equipments1 (lab_school, lab_name, id, model_number, date_purchased) VALUES ('SCBE','Communication Laboratory 1',0002,'10009','2002-03-01');
+INSERT INTO Equipments1 (lab_school, lab_name, id, model_number, date_purchased) VALUES ('SCBE','NTU Food Technology Centre',0001,'10003','2002-03-01');
+INSERT INTO Equipments1 (lab_school, lab_name, id, model_number, date_purchased) VALUES ('SCBE','NTU Food Technology Centre',0002,'10009','2002-03-01');
 
 
 --'MAE', 'ST Engineering-NTU Corporate Lab'
