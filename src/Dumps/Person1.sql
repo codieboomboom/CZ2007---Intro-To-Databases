@@ -22,3 +22,12 @@ INSERT INTO Person1 VALUES('G0237589F', 'Bo  Chen', 'NBS', '80937616', 'kamr.k
 INSERT INTO Person1 VALUES('S9582767G', 'Wuhan  Tan', 'SCSE', '97863812', 'bayoub.craw.395e@chelseaartsgroup.com', '5034 Ang Mo Kio Ind Pk 2 #01-337');
 INSERT INTO Person1 VALUES('G0986589F', 'Fang  Wang', 'SCBE', '90283612', 'ighaithtallik@nygmkv.icu', '896 Dunearn Road #05-03 Sime Darby Centre');
 INSERT INTO Person1 VALUES('S9847267G', 'Xiuying  Chang', 'MAE', '89037162', 'rfati.moka@region13.ga', '26 Ayer Rajah Crescent Ayer Rajah Industrial Estate');
+
+--Staffs
+
+INSERT INTO Person1 VALUES('S9223342H', 'Bong Qiu Qiu', 'SCSE', '91212512', 'bqq0001@ntu.edu.sg', '14 Tuas Avenue 1 BS Community Hub');
+INSERT INTO Person1 VALUES('S9404971Y', 'Gregory Low', 'CEE', '82012373', 'gl0001@ntu.edu.sg', 'Blk 43 Compassvale Street 2');
+INSERT INTO Person1 VALUES('S5893758F', 'Yusof Ishak', 'NBS', '80900016', 'yi0001@ntu.edu.sg', 'Blk 52 Davevale Crescent');
+INSERT INTO Person1 VALUES('S9582888G', 'Low Thia Kiang', 'SCSE', '97860202', 'ltk0001@ntu.edu.sg', '403 Ang Mo Kio Ind Pk 1 #01-337');
+INSERT INTO Person1 VALUES('S0965589F', 'Tan Ah Yew', 'SCBE', '90210212', 'tay0001@ntu.edu.sg', '222 Dunearn Road #05-03 Simei Derby Centre');
+INSERT INTO Person1 VALUES('S9855567G', 'Darius Tan', 'MAE', '89047562', 'dt0001@ntu.edu.sg', '10 Crescent Telok Ayer');
