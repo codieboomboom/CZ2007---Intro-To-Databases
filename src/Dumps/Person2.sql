@@ -23,3 +23,12 @@ INSERT INTO Person2 VALUES('Blk 234 Rivervale Crescent', '654213', 'Singapore', 
 INSERT INTO Person2 VALUES('5034 Ang Mo Kio Ind Pk 2 #01-337', '569537', 'Singapore', 'Singapore');
 INSERT INTO Person2 VALUES('896 Dunearn Road #05-03 Sime Darby Centre', '589472', 'Singapore', 'Singapore');
 INSERT INTO Person2 VALUES('26 Ayer Rajah Crescent Ayer Rajah Industrial Estate', '139944', 'Singapore', 'Singapore');
+
+--Staffs
+
+INSERT INTO Person2 VALUES('14 Tuas Avenue 1 BS Community Hub', '842134', 'Singapore', 'Singapore');
+INSERT INTO Person2 VALUES('Blk 43 Compassvale Street 2', '651842', 'Singapore', 'Singapore');
+INSERT INTO Person2 VALUES('Blk 52 Davevale Crescent', '652233', 'Singapore', 'Singapore');
+INSERT INTO Person2 VALUES('403 Ang Mo Kio Ind Pk 1 #01-337', '503537', 'Singapore', 'Singapore');
+INSERT INTO Person2 VALUES('222 Dunearn Road #05-03 Simei Derby Centre', '580472', 'Singapore', 'Singapore');
+INSERT INTO Person2 VALUES('10 Crescent Telok Ayer', '131144', 'Singapore', 'Singapore');
