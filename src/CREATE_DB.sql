@@ -34,7 +34,7 @@ CREATE TABLE Students(
 	);
 -----------------------------------------
 CREATE TABLE Undergraduates(
-	studnet_person_id CHAR(9) NOT NULL,
+	student_person_id CHAR(9) NOT NULL,
 	PRIMARY KEY (student_person_id),
 	FOREIGN KEY (student_person_id) REFERENCES Person1(person_id)
 	); --if it doesn't work try changing REFERENCES Person1(person_id) to Students(person_id)
@@ -102,7 +102,7 @@ CREATE TABLE Equipments1(
 	model_number VARCHAR (100),
 	date_purchased DATE
 	PRIMARY KEY (lab_school, lab_name, id),
-	FOREIGN KEY (lab_school, lab_name) REFERENCES Laboratories(school, lab_name)
+	FOREIGN KEY (lab_school, lab_name) REFERENCES Laboratories(school, lab_name),
 	FOREIGN KEY (model_number) REFERENCES Equipments2(model_number)
 	);
 ------------------------------------
