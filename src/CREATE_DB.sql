@@ -133,27 +133,29 @@ CREATE TABLE Staffs(
 	position VARCHAR (100),
 	PRIMARY KEY (person_id),
 	FOREIGN KEY (person_id) REFERENCES Person1(person_id) 
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
 	);
 --------------------------------------------------
 CREATE TABLE Administrative(
 	person_id CHAR(9),
 	PRIMARY KEY (person_id),
 	FOREIGN KEY (person_id) REFERENCES Person1(person_id)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
 	);
 ---------------------------------------------------
 CREATE TABLE Technical(
 	person_id CHAR(9), 
-	school VARCHAR (100),
-	lab_name VARCHAR (100),
+	school VARCHAR (100) DEFAULT 'NOT ASSIGNED',
+	lab_name VARCHAR (100) DEFAULT 'NOT ASSIGNED',
 	PRIMARY KEY (person_id, school, lab_name),
-	FOREIGN KEY (person_id) REFERENCES Person1 (person_id),
+	FOREIGN KEY (person_id) REFERENCES Person1 (person_id)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
 	FOREIGN KEY (school, lab_name) REFERENCES Laboratories (school, lab_name)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE SET DEFAULT
+	ON UPDATE CASCADE
 	);
 ---------------------------------------------------
 CREATE TABLE Stakeholders(

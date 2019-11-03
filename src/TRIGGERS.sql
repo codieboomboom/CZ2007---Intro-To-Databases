@@ -52,6 +52,35 @@ BEGIN
 END
 GO
 */
+--Delete Staffs, Technical and Administrative
+CREATE TRIGGER DeleteStaffs ON Staffs
+FOR DELETE AS 
+BEGIN
+	PRINT 'DELETING STAFFS FROM ALL RELEVANT SCHEMAS'
+	DELETE FROM Person1
+	WHERE Person1.person_id = (SELECT person_id FROM deleted) 
+END
+GO
+
+CREATE TRIGGER DeleteTechnicalStaffs ON Technical
+FOR DELETE AS 
+BEGIN
+	PRINT 'DELETING TECHNICAL STAFFS FROM ALL RELEVANT SCHEMAS'
+	DELETE FROM Person1
+	WHERE Person1.person_id = (SELECT person_id FROM deleted) 
+END
+GO
+
+CREATE TRIGGER DeleteAdminStaffs ON Administrative
+FOR DELETE AS 
+BEGIN
+	PRINT 'DELETING ADMIN STAFFS FROM ALL RELEVANT SCHEMAS'
+	DELETE FROM Person1
+	WHERE Person1.person_id = (SELECT person_id FROM deleted) 
+END
+GO
+--DeleteStudent, DeleteGrad, DeleteUndergrad
+
 
 
 

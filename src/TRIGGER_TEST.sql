@@ -17,8 +17,15 @@ WHERE person_id = 'G0384069F'*/
 
 --TEST TRIGGER UpdateStakeholder expect: all records with stakeholder person_id is updated. Expect to have a reminder to update
 --other personal information.
-UPDATE Stakeholders
+/*UPDATE Stakeholders
 SET person_id ='G1473586R'
-WHERE person_id = 'S9472333H'
+WHERE person_id = 'S9472333H'*/ -- NEED FOLLOW UP
+
+--TEST TRIGGER DeletingStaffs
+--DELETE FROM STAFFS WHERE position = 'Outreach Manager'
+
+--DELETE FROM Administrative WHERE person_id = 'S9855567G'
+
+--DELETE FROM Technical WHERE person_id = 'S9404971Y'
 
 
