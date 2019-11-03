@@ -7,12 +7,12 @@ CREATE TABLE Cities(
 CREATE TABLE Person2(
 	address VARCHAR(100) NOT NULL,
 	zip VARCHAR(6) NOT NULL,
-	city_name VARCHAR (100) NOT NULL,
-	state_name VARCHAR (100) NOT NULL,
+	city_name VARCHAR (100),
+	state_name VARCHAR (100),
 	PRIMARY KEY (address),
 	FOREIGN KEY (city_name,state_name) REFERENCES Cities(city_name,state_name)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE SET NULL
+	ON UPDATE CASCADE -- notify to update afterwards create another view maybe listing which ever has null
 );
 --------------------------------------
 CREATE TABLE Person1 (
@@ -21,11 +21,11 @@ CREATE TABLE Person1 (
 	school VARCHAR(100) NOT NULL,
 	phone VARCHAR(15) NOT NULL, 
 	email VARCHAR(100) NOT NULL,
-	address VARCHAR(100) NOT NULL,
+	address VARCHAR(100),
 	PRIMARY KEY (person_id),
 	FOREIGN KEY (address) REFERENCES Person2(address)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE SET NULL
+	ON UPDATE CASCADE
 );
 ------------------------------------
 CREATE TABLE Students(
@@ -35,8 +35,8 @@ CREATE TABLE Students(
 	major_and_minor VARCHAR (100) NOT NULL,
 	PRIMARY KEY (person_id),
 	FOREIGN KEY (person_id) REFERENCES Person1(person_id)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
 	);
 -----------------------------------------
 CREATE TABLE Undergraduates(
@@ -161,8 +161,8 @@ CREATE TABLE Stakeholders(
 	domain VARCHAR (100),
 	PRIMARY KEY (person_id),
 	FOREIGN KEY (person_id) REFERENCES Person1 (person_id)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE CASCADE --if person in record is deleted, deleted here
+	ON UPDATE CASCADE
 	);
 --------------------------------------------------
 CREATE TABLE CommentSuggestions(
@@ -171,8 +171,8 @@ CREATE TABLE CommentSuggestions(
 	topic VARCHAR (100),
 	PRIMARY KEY (stakeholder_person_id,date_time),
 	FOREIGN KEY (stakeholder_person_id) REFERENCES Person1 (person_id) -- if it doesn't work try changing to Stakeholders(person_id)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE CASCADE --if the person disappear, the comment should be too
+	ON UPDATE CASCADE 
 	);
 -----------------------------------------------------
 CREATE TABLE Professors(
