@@ -26,3 +26,9 @@ INSERT INTO ssp5g1.dbo.Courses VALUES ('CV3001','S8362999J');
 INSERT INTO ssp5g1.dbo.Courses VALUES ('MH2810','S0286111R');
 INSERT INTO ssp5g1.dbo.Courses VALUES ('MH3201','S0286111R');
 INSERT INTO ssp5g1.dbo.Courses VALUES ('MH2001','S0286111R');
+
+--Rainer Dumke,MSE
+INSERT INTO ssp5g1.dbo.Courses VALUES ('MS0001','S0562989W');
+
+--Ho Shen Yong, SPMS
+--doesnt teach any courses

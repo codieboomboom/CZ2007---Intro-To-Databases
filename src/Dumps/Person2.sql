@@ -49,3 +49,6 @@ INSERT INTO ssp5g1.dbo.Person2 VALUES('79 Pulitzer Road #15-04 CPF Building', '0
 INSERT INTO ssp5g1.dbo.Person2 VALUES('1 West bridge road 19-04 high street centre', '133094', 'Singapore', 'Singapore');
 INSERT INTO ssp5g1.dbo.Person2 VALUES('93 Kuala Road 02-12', '234465', 'Singapore', 'Singapore');
 INSERT INTO ssp5g1.dbo.Person2 VALUES('43 Changi North Street 5 06-20', '485532', 'Singapore', 'Singapore');
+INSERT INTO ssp5g1.dbo.Person2 VALUES('111 Binjal Road 01-12', '123465', 'Singapore', 'Singapore');
+INSERT INTO ssp5g1.dbo.Person2 VALUES('22 Sesame Street 5 02-20', '321532', 'Singapore', 'Singapore');
+--

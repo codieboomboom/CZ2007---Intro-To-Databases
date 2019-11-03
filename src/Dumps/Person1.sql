@@ -47,3 +47,6 @@ INSERT INTO ssp5g1.dbo.Person1 VALUES ('S0283666T', 'Thambipillai Srikanthan', '
 INSERT INTO ssp5g1.dbo.Person1 VALUES ('S0385888H', 'Vuu Chan Hua', 'SCSE', '94446162', 'vch0003@ntu.edu.sg', '1 West bridge road 19-04 high street centre');
 INSERT INTO ssp5g1.dbo.Person1 VALUES ('S8362999J', 'Arvind Easwaran', 'CEE', '95551366', 'ae0003@ntu.edu.sg', '93 Kuala Road 02-12');
 INSERT INTO ssp5g1.dbo.Person1 VALUES ('S0286111R', 'Anupam Chattopadhyay', 'MAE', '86664162', 'ac0003@ntu.edu.sg', '43 Changi North Street 5 06-20');
+
+INSERT INTO ssp5g1.dbo.Person1 VALUES ('S0562989W', 'Rainer Dumke', 'MSE', '82055456', 'rd0005@ntu.edu.sg', '111 Binjal Road 01-12');
+INSERT INTO ssp5g1.dbo.Person1 VALUES ('S2386121E', 'Ho Shen Yong', 'SPMS', '86767412', 'hsy0005@ntu.edu.sg', '22 Sesame Street 5 02-20');
