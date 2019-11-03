@@ -6,7 +6,6 @@ INSERT INTO ssp5g1.dbo.Courses VALUES ('AD1011','S9412777H');
 INSERT INTO ssp5g1.dbo.Courses VALUES ('AD1012','S9412777H');
 INSERT INTO ssp5g1.dbo.Courses VALUES ('AD1013','S9412777H');
 
-
 --Thambipillai Srikanthan,HSS
 INSERT INTO ssp5g1.dbo.Courses VALUES ('SS3311','S0283666T');
 INSERT INTO ssp5g1.dbo.Courses VALUES ('SS4311','S0283666T');
