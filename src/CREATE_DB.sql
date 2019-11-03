@@ -183,9 +183,8 @@ CREATE TABLE Professors(
 ------------------------------------------------------
 CREATE TABLE Courses(
 	id CHAR(6),
-	semester VARCHAR(15),
 	professor_person_id CHAR(9),
-	PRIMARY KEY (id, semester),
+	PRIMARY KEY (id),
 	FOREIGN KEY (professor_person_id) REFERENCES Professors(person_id)
 	ON DELETE SET NULL
 	ON UPDATE CASCADE
@@ -194,10 +193,9 @@ CREATE TABLE Courses(
 CREATE TABLE Attend(
 	student_person_id CHAR(9),
 	course_id CHAR(6),
-	semester VARCHAR(15),
-	PRIMARY KEY (student_person_id,course_id,semester),
+	PRIMARY KEY (student_person_id,course_id),
 	FOREIGN KEY (student_person_id) REFERENCES Person1 (person_id), -- if it doesn't work change it to Students(person_id)
-	FOREIGN KEY (course_id,semester) REFERENCES Courses(id,semester)
+	FOREIGN KEY (course_id) REFERENCES Courses(id)
 	ON DELETE SET NULL
 	ON UPDATE CASCADE
 	);
@@ -215,11 +213,10 @@ CREATE TABLE Contain(
 	professor_person_id CHAR(9),
 	time_table_date_time DATETIME, 
 	course_id CHAR (6),
-	semester VARCHAR(15),
 	PRIMARY KEY (professor_person_id,time_table_date_time,course_id),
 	FOREIGN KEY (professor_person_id) REFERENCES Person1 (person_id),
 	FOREIGN KEY (professor_person_id, time_table_date_time) REFERENCES Timetables (professor_person_id, date_time),
-	FOREIGN KEY (course_id,semester) REFERENCES Courses(id,semester)
+	FOREIGN KEY (course_id) REFERENCES Courses(id)
 	ON DELETE SET NULL
 	ON UPDATE CASCADE
 	);
