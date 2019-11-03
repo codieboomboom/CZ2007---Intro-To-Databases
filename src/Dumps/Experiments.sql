@@ -1,13 +1,5 @@
 -- ssp5g1.dbo.Experiments(undergraduate_person_id, school, lab_name, conduct_date, attendance)
 
--- Problem with ssp5g1.dbo.Experiments : 
--- Primary Key of ssp5g1.dbo.Experiments is {undergraduate_person_id, school, lab_name},
--- and there might be multiple entries with the same primary key since a student
--- can have multiple lab lessons in the same lab.
--- But every row must have a different value for the primary key column,
--- meaning we cannot have multiple entries with the same primary keys.
-
-
 -- Attendance for S9278576G
 INSERT INTO ssp5g1.dbo.Experiments VALUES('S9278576G', 'SCSE', 'Software Lab 1', '2019-09-23 14:30:00', 'P');
 INSERT INTO ssp5g1.dbo.Experiments VALUES('S9278576G', 'SCSE', 'Software Lab 1', '2019-09-30 14:30:00', 'P');
