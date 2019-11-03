@@ -17,10 +17,10 @@ GROUP BY G.student_person_id
 HAVING COUNT(DISTINCT(professor_person_id)) >=1 AND COUNT(DISTINCT(school,lab_name)) >=1
 
 --Question 4
-SELECT Professor.Person_ID, COUNT(ID) AS CourseCount
-FROM   Courses
-WHERE  CourseCount > 1
-GROUP BY Professor.Person_ID
+SELECT professor_person_id
+FROM   ssp5g1.dbo.Courses
+GROUP BY professor_person_id
+HAVING COUNT(id) > 1
 
 -- Question 5
 SELECT *
@@ -37,6 +37,7 @@ WHERE NOT EXISTS (SELECT undergraduate_person_id
 					GROUP BY undergraduate_person_id)
 
 -- Question 7
-SELECT Graduate.PersonID 
-FROM   Attend, Research
-WHERE  Attend.Student.PersonID = Research.Graduate.PersonID
+SELECT G.student_person_id, research_topic, course_id
+FROM ssp5g1.dbo.Graduates AS G, ssp5g1.dbo.Attend AS A
+WHERE G.student_person_id = A.student_person_id
+	AND G.research_topic <> NULL
