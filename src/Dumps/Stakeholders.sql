@@ -1,4 +1,4 @@
---Stakeholders (person_id, domain)
+--ssp5g1.dbo.Stakeholders (person_id, domain)
 
 --taken from first 3 students
 INSERT INTO ssp5g1.dbo.Stakeholders VALUES ('S9278576G', 'Student');
