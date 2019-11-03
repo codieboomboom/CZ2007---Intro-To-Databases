@@ -40,22 +40,24 @@ CREATE TABLE Students(
 	);
 -----------------------------------------
 CREATE TABLE Undergraduates(
-	student_person_id CHAR(9) NOT NULL,
+	student_person_id CHAR(9),
 	PRIMARY KEY (student_person_id),
 	FOREIGN KEY (student_person_id) REFERENCES Person1(person_id)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
 	); --if it doesn't work try changing REFERENCES Person1(person_id) to Students(person_id)
 -----------------------------------------
 CREATE TABLE Graduates(
 	student_person_id CHAR(9),
-	professor_person_id CHAR(9),
+	professor_person_id CHAR(9) DEFAULT 'NO SUPERVISORS',
 	research_topic VARCHAR (100),
 	PRIMARY KEY (student_person_id, professor_person_id),
-	FOREIGN KEY (student_person_id) REFERENCES Person1(person_id), --if it doesn't work try changing REFERENCES Person1(person_id) to Students(person_id)
+	FOREIGN KEY (student_person_id) REFERENCES Person1(person_id)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE, --if it doesn't work try changing REFERENCES Person1(person_id) to Students(person_id)
 	FOREIGN KEY (professor_person_id) REFERENCES Person1(person_id) --if it doesn't work try changing REFERENCES Person1(person_id) to Professors(person_id)
-    --ON DELETE SET NULL
-	--ON UPDATE CASCADE
+    ON DELETE NO ACTION --trigger ?
+	ON UPDATE NO ACTION
 	); 
 -----------------------------------------
 CREATE TABLE Research(
@@ -64,8 +66,8 @@ CREATE TABLE Research(
 	lab_name VARCHAR (100),
 	PRIMARY KEY (graduate_person_id, school, lab_name),
 	FOREIGN KEY (graduate_person_id) REFERENCES Person1(person_id)
-    --ON DELETE SET NULL
-	--ON UPDATE CASCADE
+    ON DELETE CASCADE
+	ON UPDATE CASCADE
 	--if it doesn't work try changing REFERENCES Person1(person_id) to Students(person_id)
 	); 
 -------------------------------------------
@@ -77,8 +79,8 @@ CREATE TABLE Experiments(
 	attendance CHAR(1),
 	PRIMARY KEY (undergraduate_person_id, school, lab_name, conduct_date),
 	FOREIGN KEY (undergraduate_person_id) REFERENCES person1(person_id)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
 	--if it doesn't work try changing REFERENCES Person1(person_id) to Undergraduates(student_person_id)
 	);
 ----------------------------------------------
@@ -196,7 +198,9 @@ CREATE TABLE Attend(
 	student_person_id CHAR(9),
 	course_id CHAR(6),
 	PRIMARY KEY (student_person_id,course_id),
-	FOREIGN KEY (student_person_id) REFERENCES Person1 (person_id), -- if it doesn't work change it to Students(person_id)
+	FOREIGN KEY (student_person_id) REFERENCES Person1 (person_id)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE, -- if it doesn't work change it to Students(person_id)
 	FOREIGN KEY (course_id) REFERENCES Courses(id)
 	--ON DELETE SET NULL
 	--ON UPDATE CASCADE

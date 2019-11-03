@@ -29,3 +29,7 @@ WHERE person_id = 'S9472333H'*/ -- NEED FOLLOW UP
 --DELETE FROM Technical WHERE person_id = 'S9404971Y'
 
 
+--TEST TRIGGER DeletingStudents, Grads and Undergrads -- check other related schema too
+--DELETE FROM Students WHERE admission_date = '2017-05-05'
+--DELETE FROM Graduates WHERE research_topic IS NULL
+DELETE FROM Undergraduates WHERE student_person_id = 'S9245661F'

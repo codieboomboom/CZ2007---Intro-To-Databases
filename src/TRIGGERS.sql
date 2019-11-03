@@ -33,7 +33,7 @@ FOR DELETE AS
 BEGIN
 	PRINT 'DELETING STAKEHOLDERS FROM ALL RELEVANT SCHEMAS'
 	DELETE FROM Person1
-	WHERE Person1.person_id = (SELECT person_id FROM deleted) -- deleted in root, then delet in stakeholders or others place
+	WHERE Person1.person_id IN (SELECT person_id FROM deleted) -- deleted in root, then delet in stakeholders or others place
 	--stakeholders deleted then comments & suggestions are also erased.
 END
 GO
@@ -58,7 +58,7 @@ FOR DELETE AS
 BEGIN
 	PRINT 'DELETING STAFFS FROM ALL RELEVANT SCHEMAS'
 	DELETE FROM Person1
-	WHERE Person1.person_id = (SELECT person_id FROM deleted) 
+	WHERE Person1.person_id IN (SELECT person_id FROM deleted) 
 END
 GO
 
@@ -67,7 +67,7 @@ FOR DELETE AS
 BEGIN
 	PRINT 'DELETING TECHNICAL STAFFS FROM ALL RELEVANT SCHEMAS'
 	DELETE FROM Person1
-	WHERE Person1.person_id = (SELECT person_id FROM deleted) 
+	WHERE Person1.person_id IN (SELECT person_id FROM deleted) 
 END
 GO
 
@@ -76,10 +76,38 @@ FOR DELETE AS
 BEGIN
 	PRINT 'DELETING ADMIN STAFFS FROM ALL RELEVANT SCHEMAS'
 	DELETE FROM Person1
-	WHERE Person1.person_id = (SELECT person_id FROM deleted) 
+	WHERE Person1.person_id IN (SELECT person_id FROM deleted) 
 END
 GO
+
 --DeleteStudent, DeleteGrad, DeleteUndergrad
+
+CREATE TRIGGER DeleteStudent ON Students
+FOR DELETE AS
+BEGIN
+	PRINT 'DELETING STUDENTS FROM RELEVANT SCHEMAS'
+	DELETE FROM Person1
+	WHERE Person1.person_id IN (SELECT person_id FROM deleted)
+END
+GO
+
+CREATE TRIGGER DeleteGrad ON Graduates
+FOR DELETE AS
+BEGIN
+	PRINT 'DELETING GRADUATES FROM RELEVANT SCHEMAS'
+	DELETE FROM Person1
+	WHERE Person1.person_id IN (SELECT student_person_id FROM deleted)
+END
+GO
+
+CREATE TRIGGER DeleteUndergrad ON Undergraduates
+FOR DELETE AS
+BEGIN
+	PRINT 'DELETING UNDERGRADUATES FROM RELEVANT SCHEMAS'
+	DELETE FROM Person1
+	WHERE Person1.person_id IN (SELECT student_person_id FROM deleted)
+END
+GO
 
 
 
