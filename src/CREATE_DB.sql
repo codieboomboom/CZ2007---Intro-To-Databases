@@ -11,8 +11,8 @@ CREATE TABLE Person2(
 	state_name VARCHAR (100) NOT NULL,
 	PRIMARY KEY (address),
 	FOREIGN KEY (city_name,state_name) REFERENCES Cities(city_name,state_name)
-	ON DELETE SET NULL
-	ON UPDATE CASCADE
+	--ON DELETE SET NULL
+	--ON UPDATE CASCADE
 );
 --------------------------------------
 CREATE TABLE Person1 (
@@ -24,8 +24,8 @@ CREATE TABLE Person1 (
 	address VARCHAR(100) NOT NULL,
 	PRIMARY KEY (person_id),
 	FOREIGN KEY (address) REFERENCES Person2(address)
-	ON DELETE SET NULL
-	ON UPDATE CASCADE
+	--ON DELETE SET NULL
+	--ON UPDATE CASCADE
 );
 ------------------------------------
 CREATE TABLE Students(
@@ -35,16 +35,16 @@ CREATE TABLE Students(
 	major_and_minor VARCHAR (100) NOT NULL,
 	PRIMARY KEY (person_id),
 	FOREIGN KEY (person_id) REFERENCES Person1(person_id)
-	ON DELETE SET NULL
-	ON UPDATE CASCADE
+	--ON DELETE SET NULL
+	--ON UPDATE CASCADE
 	);
 -----------------------------------------
 CREATE TABLE Undergraduates(
 	student_person_id CHAR(9) NOT NULL,
 	PRIMARY KEY (student_person_id),
 	FOREIGN KEY (student_person_id) REFERENCES Person1(person_id)
-	ON DELETE SET NULL
-	ON UPDATE CASCADE
+	--ON DELETE SET NULL
+	--ON UPDATE CASCADE
 	); --if it doesn't work try changing REFERENCES Person1(person_id) to Students(person_id)
 -----------------------------------------
 CREATE TABLE Graduates(
@@ -54,8 +54,8 @@ CREATE TABLE Graduates(
 	PRIMARY KEY (student_person_id, professor_person_id),
 	FOREIGN KEY (student_person_id) REFERENCES Person1(person_id), --if it doesn't work try changing REFERENCES Person1(person_id) to Students(person_id)
 	FOREIGN KEY (professor_person_id) REFERENCES Person1(person_id) --if it doesn't work try changing REFERENCES Person1(person_id) to Professors(person_id)
-    ON DELETE SET NULL
-	ON UPDATE CASCADE
+    --ON DELETE SET NULL
+	--ON UPDATE CASCADE
 	); 
 -----------------------------------------
 CREATE TABLE Research(
@@ -64,8 +64,8 @@ CREATE TABLE Research(
 	lab_name VARCHAR (100),
 	PRIMARY KEY (graduate_person_id, school, lab_name),
 	FOREIGN KEY (graduate_person_id) REFERENCES Person1(person_id)
-    ON DELETE SET NULL
-	ON UPDATE CASCADE
+    --ON DELETE SET NULL
+	--ON UPDATE CASCADE
 	--if it doesn't work try changing REFERENCES Person1(person_id) to Students(person_id)
 	); 
 -------------------------------------------
@@ -77,8 +77,8 @@ CREATE TABLE Experiments(
 	attendance CHAR(1),
 	PRIMARY KEY (undergraduate_person_id, school, lab_name, conduct_date),
 	FOREIGN KEY (undergraduate_person_id) REFERENCES person1(person_id)
-	ON DELETE SET NULL
-	ON UPDATE CASCADE
+	--ON DELETE SET NULL
+	--ON UPDATE CASCADE
 	--if it doesn't work try changing REFERENCES Person1(person_id) to Undergraduates(student_person_id)
 	);
 ----------------------------------------------
@@ -94,8 +94,8 @@ CREATE TABLE ResearchLaboratories(
 	lab_name VARCHAR (100),
 	PRIMARY KEY (school, lab_name),
 	FOREIGN KEY (school, lab_name) REFERENCES Laboratories(school, lab_name)
-	ON DELETE SET NULL
-	ON UPDATE CASCADE
+	--ON DELETE SET NULL
+	--ON UPDATE CASCADE
 	);
 ----------------------------------------------
 CREATE TABLE TeachingLaboratories(
@@ -103,8 +103,8 @@ CREATE TABLE TeachingLaboratories(
 	lab_name VARCHAR (100),
 	PRIMARY KEY (school, lab_name),
 	FOREIGN KEY (school, lab_name) REFERENCES Laboratories(school, lab_name)
-	ON DELETE SET NULL
-	ON UPDATE CASCADE
+	--ON DELETE SET NULL
+	--ON UPDATE CASCADE
 	);
 --------------------------------------------------
 CREATE TABLE Equipments2(
@@ -122,8 +122,8 @@ CREATE TABLE Equipments1(
 	PRIMARY KEY (lab_school, lab_name, id),
 	FOREIGN KEY (lab_school, lab_name) REFERENCES Laboratories(school, lab_name),
 	FOREIGN KEY (model_number) REFERENCES Equipments2(model_number)
-	ON DELETE SET NULL
-	ON UPDATE CASCADE
+	--ON DELETE SET NULL
+	--ON UPDATE CASCADE
 	);
 ------------------------------------
 CREATE TABLE Staffs(
@@ -133,16 +133,16 @@ CREATE TABLE Staffs(
 	position VARCHAR (100),
 	PRIMARY KEY (person_id),
 	FOREIGN KEY (person_id) REFERENCES Person1(person_id) 
-	ON DELETE SET NULL
-	ON UPDATE CASCADE
+	--ON DELETE SET NULL
+	--ON UPDATE CASCADE
 	);
 --------------------------------------------------
 CREATE TABLE Administrative(
 	person_id CHAR(9),
 	PRIMARY KEY (person_id),
 	FOREIGN KEY (person_id) REFERENCES Person1(person_id)
-	ON DELETE SET NULL
-	ON UPDATE CASCADE
+	--ON DELETE SET NULL
+	--ON UPDATE CASCADE
 	);
 ---------------------------------------------------
 CREATE TABLE Technical(
@@ -152,8 +152,8 @@ CREATE TABLE Technical(
 	PRIMARY KEY (person_id, school, lab_name),
 	FOREIGN KEY (person_id) REFERENCES Person1 (person_id),
 	FOREIGN KEY (school, lab_name) REFERENCES Laboratories (school, lab_name)
-	ON DELETE SET NULL
-	ON UPDATE CASCADE
+	--ON DELETE SET NULL
+	--ON UPDATE CASCADE
 	);
 ---------------------------------------------------
 CREATE TABLE Stakeholders(
@@ -161,8 +161,8 @@ CREATE TABLE Stakeholders(
 	domain VARCHAR (100),
 	PRIMARY KEY (person_id),
 	FOREIGN KEY (person_id) REFERENCES Person1 (person_id)
-	ON DELETE SET NULL
-	ON UPDATE CASCADE
+	--ON DELETE SET NULL
+	--ON UPDATE CASCADE
 	);
 --------------------------------------------------
 CREATE TABLE CommentSuggestions(
@@ -171,8 +171,8 @@ CREATE TABLE CommentSuggestions(
 	topic VARCHAR (100),
 	PRIMARY KEY (stakeholder_person_id,date_time),
 	FOREIGN KEY (stakeholder_person_id) REFERENCES Person1 (person_id) -- if it doesn't work try changing to Stakeholders(person_id)
-	ON DELETE SET NULL
-	ON UPDATE CASCADE
+	--ON DELETE SET NULL
+	--ON UPDATE CASCADE
 	);
 -----------------------------------------------------
 CREATE TABLE Professors(
@@ -186,8 +186,8 @@ CREATE TABLE Courses(
 	professor_person_id CHAR(9),
 	PRIMARY KEY (id),
 	FOREIGN KEY (professor_person_id) REFERENCES Professors(person_id)
-	ON DELETE SET NULL
-	ON UPDATE CASCADE
+	--ON DELETE SET NULL
+	--ON UPDATE CASCADE
 	);
 --------------------------------------------------------
 CREATE TABLE Attend(
@@ -196,8 +196,8 @@ CREATE TABLE Attend(
 	PRIMARY KEY (student_person_id,course_id),
 	FOREIGN KEY (student_person_id) REFERENCES Person1 (person_id), -- if it doesn't work change it to Students(person_id)
 	FOREIGN KEY (course_id) REFERENCES Courses(id)
-	ON DELETE SET NULL
-	ON UPDATE CASCADE
+	--ON DELETE SET NULL
+	--ON UPDATE CASCADE
 	);
 ------------------------------------------------------
 CREATE TABLE Timetables(
@@ -205,8 +205,8 @@ CREATE TABLE Timetables(
 	date_time DATETIME,
 	PRIMARY KEY (professor_person_id,date_time),
 	FOREIGN KEY (professor_person_id) REFERENCES Person1 (person_id)
-	ON DELETE SET NULL
-	ON UPDATE CASCADE
+	--ON DELETE SET NULL
+	--ON UPDATE CASCADE
 	);
 ------------------------------------------------------
 CREATE TABLE Contain(
@@ -217,7 +217,7 @@ CREATE TABLE Contain(
 	FOREIGN KEY (professor_person_id) REFERENCES Person1 (person_id),
 	FOREIGN KEY (professor_person_id, time_table_date_time) REFERENCES Timetables (professor_person_id, date_time),
 	FOREIGN KEY (course_id) REFERENCES Courses(id)
-	ON DELETE SET NULL
-	ON UPDATE CASCADE
+	--ON DELETE SET NULL
+	--ON UPDATE CASCADE
 	);
 -------------------------------------------------------
