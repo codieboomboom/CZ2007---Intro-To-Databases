@@ -205,7 +205,6 @@ CREATE TABLE Attend(
 CREATE TABLE Timetables(
 	professor_person_id CHAR(9),
 	date_time DATETIME,
-	semester VARCHAR(15),
 	PRIMARY KEY (professor_person_id,date_time),
 	FOREIGN KEY (professor_person_id) REFERENCES Person1 (person_id)
 	ON DELETE SET NULL
