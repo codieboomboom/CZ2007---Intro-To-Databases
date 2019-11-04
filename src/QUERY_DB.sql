@@ -26,7 +26,7 @@ HAVING COUNT(id) > 1
 SELECT *
 FROM   ssp5g1.dbo.Equipments1 AS E1 , ssp5g1.dbo.Equipments2 As E2
 WHERE  E1.model_number = E2.model_number
-AND E1.lab_school = 'Particular school' AND E1.lab_name = 'Particular lab in the school'
+AND E1.lab_school = 'SCSE' AND E1.lab_name = 'Hardware Project Lab'
 
 -- Question 6  --checked
 SELECT undergraduate_person_id 
@@ -38,6 +38,6 @@ WHERE E.undergraduate_person_id NOT IN (SELECT undergraduate_person_id
 GROUP BY E.undergraduate_person_id
 
 -- Question 7 --checked
-SELECT G.student_person_id, research_topic, course_id
+SELECT DISTINCT G.student_person_id
 FROM ssp5g1.dbo.Graduates AS G, ssp5g1.dbo.Attend AS A
 WHERE G.student_person_id = A.student_person_id AND G.research_topic IS NOT NULL
