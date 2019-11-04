@@ -1,13 +1,25 @@
 -- Question 1 --Checked
+/*
 SELECT person_id AS stakeholder_person_id
 FROM   ssp5g1.dbo.Stakeholders
-WHERE  Domain = 'Public'
+WHERE  Domain = 'Public';
+*/
+SELECT S.person_id, P.name, S.domain
+FROM ssp5g1.dbo.Stakeholders AS S, ssp5g1.dbo.Person1 AS P
+WHERE S.person_id = P.person_id AND S.domain = 'Public';
 
 -- Question 2 --Checked
+/*
 SELECT stakeholder_person_id
 FROM ssp5g1.dbo.CommentSuggestions
 GROUP BY stakeholder_person_id
 HAVING COUNT(date_time) >= 5
+*/
+SELECT P.person_id, P.name
+FROM ssp5g1.dbo.Person1 AS P, ssp5g1.dbo.CommentSuggestions AS C
+WHERE P.person_id = C.stakeholder_person_id
+GROUP BY P.name, P.person_id
+HAVING COUNT(P.name) >= 5;
 
 --Question 3 -- checked
 SELECT student_person_id
