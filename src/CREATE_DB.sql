@@ -49,13 +49,13 @@ CREATE TABLE Undergraduates(
 -----------------------------------------
 CREATE TABLE Graduates(
 	student_person_id CHAR(9),
-	professor_person_id CHAR(9) DEFAULT 'NO SUPERVISORS',
+	professor_person_id CHAR(9) DEFAULT 'NONE',
 	research_topic VARCHAR (100),
 	PRIMARY KEY (student_person_id, professor_person_id),
 	FOREIGN KEY (student_person_id) REFERENCES Person1(person_id)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE, --if it doesn't work try changing REFERENCES Person1(person_id) to Students(person_id)
-	FOREIGN KEY (professor_person_id) REFERENCES Person1(person_id) --if it doesn't work try changing REFERENCES Person1(person_id) to Professors(person_id)
+	CONSTRAINT FK_Prof FOREIGN KEY (professor_person_id) REFERENCES Person1(person_id) --if it doesn't work try changing REFERENCES Person1(person_id) to Professors(person_id)
     ON DELETE NO ACTION --trigger to do this to prevent cyclic update/delete
 	ON UPDATE NO ACTION
 	); 
@@ -211,8 +211,8 @@ CREATE TABLE Attend(
 	FOREIGN KEY (student_person_id) REFERENCES Person1 (person_id)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE, -- if it doesn't work change it to Students(person_id)
-	FOREIGN KEY (course_id) REFERENCES Courses(id)
-	--need trigger to delete
+	CONSTRAINT FK_course1 FOREIGN KEY (course_id) REFERENCES Courses(id)
+	ON DELETE NO ACTION
 	);
 ------------------------------------------------------
 CREATE TABLE Timetables(
@@ -233,7 +233,8 @@ CREATE TABLE Contain(
 	FOREIGN KEY (professor_person_id, time_table_date_time) REFERENCES Timetables (professor_person_id, date_time)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE,
-	FOREIGN KEY (course_id) REFERENCES Courses(id)
+	CONSTRAINT FK_course2 FOREIGN KEY (course_id) REFERENCES Courses(id)
+	ON DELETE NO ACTION
 	-- need trigger to delete
 	);
 -------------------------------------------------------

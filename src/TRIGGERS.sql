@@ -38,20 +38,6 @@ BEGIN
 END
 GO
 
-------------Updating Stakeholders -> update id no need go update person 1 first
-/*CREATE TRIGGER UpdateStakeholders ON Stakeholders
-FOR UPDATE AS
-BEGIN
-	PRINT 'UPDATING STAKEHOLDERS PERSON_ID IN ALL RELEVANT SCHEMAS'
-	UPDATE Person1 
-	SET Person1.person_id = (SELECT person_id FROM inserted)
-	
-	PRINT 'PLEASE CONFIRM AND ADJUST PERSONAL INFORMATION IN PERSON1'
-	SELECT *
-	FROM Person1
-END
-GO
-*/
 --Delete Staffs, Technical and Administrative
 CREATE TRIGGER DeleteStaffs ON Staffs
 FOR DELETE AS 
@@ -109,6 +95,37 @@ BEGIN
 END
 GO
 
+--DeleteProfessor to handle any tricky cases
+CREATE TRIGGER DeleteProf ON Professors
+FOR DELETE AS
+BEGIN
+	ALTER TABLE Attend DROP CONSTRAINT FK_course1
+	ALTER TABLE Graduates DROP CONSTRAINT FK_Prof
+	PRINT 'DELETING PROF FROM RELEVANT SCHEMA'
+	DELETE FROM Person1
+	WHERE Person1.person_id IN (SELECT person_id FROM deleted)
+
+	PRINT'REMOVING PROF RECORD FROM GRADUATES'
+	UPDATE Graduates
+	SET professor_person_id = 'NONE'
+	WHERE professor_person_id IN (SELECT person_id FROM deleted)
+
+END
+GO
+
+--Handle Delete Course
+CREATE TRIGGER DeleteCourse ON Courses
+FOR DELETE AS
+BEGIN
+	PRINT 'REMOVING COURSES FROM ALL SCHEMA'
+    ALTER TABLE Contain DROP CONSTRAINT FK_course2
+	ALTER TABLE Attend DROP CONSTRAINT FK_course1
+	DELETE FROM Attend WHERE course_id IN (SELECT course_id FROM deleted)
+	DELETE FROM Contain WHERE course_id IN (SELECT course_id FROM deleted)
+	
+
+END
+GO
 
 
 
