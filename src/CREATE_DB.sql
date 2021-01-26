@@ -7,12 +7,12 @@ CREATE TABLE Cities(
 CREATE TABLE Person2(
 	address VARCHAR(100) NOT NULL,
 	zip VARCHAR(6) NOT NULL,
-	city_name VARCHAR (100) NOT NULL,
-	state_name VARCHAR (100) NOT NULL,
+	city_name VARCHAR (100),
+	state_name VARCHAR (100),
 	PRIMARY KEY (address),
 	FOREIGN KEY (city_name,state_name) REFERENCES Cities(city_name,state_name)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE SET NULL
+	ON UPDATE CASCADE -- notify to update afterwards create another view maybe listing which ever has null
 );
 --------------------------------------
 CREATE TABLE Person1 (
@@ -21,11 +21,11 @@ CREATE TABLE Person1 (
 	school VARCHAR(100) NOT NULL,
 	phone VARCHAR(15) NOT NULL, 
 	email VARCHAR(100) NOT NULL,
-	address VARCHAR(100) NOT NULL,
+	address VARCHAR(100),
 	PRIMARY KEY (person_id),
 	FOREIGN KEY (address) REFERENCES Person2(address)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE SET NULL
+	ON UPDATE CASCADE
 );
 ------------------------------------
 CREATE TABLE Students(
@@ -35,53 +35,31 @@ CREATE TABLE Students(
 	major_and_minor VARCHAR (100) NOT NULL,
 	PRIMARY KEY (person_id),
 	FOREIGN KEY (person_id) REFERENCES Person1(person_id)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
 	);
 -----------------------------------------
 CREATE TABLE Undergraduates(
-	student_person_id CHAR(9) NOT NULL,
+	student_person_id CHAR(9),
 	PRIMARY KEY (student_person_id),
 	FOREIGN KEY (student_person_id) REFERENCES Person1(person_id)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
 	); --if it doesn't work try changing REFERENCES Person1(person_id) to Students(person_id)
 -----------------------------------------
 CREATE TABLE Graduates(
 	student_person_id CHAR(9),
-	professor_person_id CHAR(9),
+	professor_person_id CHAR(9) DEFAULT 'NONE',
 	research_topic VARCHAR (100),
 	PRIMARY KEY (student_person_id, professor_person_id),
-	FOREIGN KEY (student_person_id) REFERENCES Person1(person_id), --if it doesn't work try changing REFERENCES Person1(person_id) to Students(person_id)
-	FOREIGN KEY (professor_person_id) REFERENCES Person1(person_id) --if it doesn't work try changing REFERENCES Person1(person_id) to Professors(person_id)
-    --ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	FOREIGN KEY (student_person_id) REFERENCES Person1(person_id)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE, --if it doesn't work try changing REFERENCES Person1(person_id) to Students(person_id)
+	CONSTRAINT FK_Prof FOREIGN KEY (professor_person_id) REFERENCES Person1(person_id) --if it doesn't work try changing REFERENCES Person1(person_id) to Professors(person_id)
+    ON DELETE NO ACTION --trigger to do this to prevent cyclic update/delete
+	ON UPDATE NO ACTION
 	); 
 -----------------------------------------
-CREATE TABLE Research(
-	graduate_person_id CHAR(9),
-	school VARCHAR (100),
-	lab_name VARCHAR (100),
-	PRIMARY KEY (graduate_person_id, school, lab_name),
-	FOREIGN KEY (graduate_person_id) REFERENCES Person1(person_id)
-    --ON DELETE SET NULL
-	--ON UPDATE CASCADE
-	--if it doesn't work try changing REFERENCES Person1(person_id) to Students(person_id)
-	); 
--------------------------------------------
-CREATE TABLE Experiments(
-	undergraduate_person_id CHAR(9),
-	school VARCHAR(100),
-	lab_name VARCHAR(100),
-	conduct_date DATETIME,
-	attendance CHAR(1),
-	PRIMARY KEY (undergraduate_person_id, school, lab_name, conduct_date),
-	FOREIGN KEY (undergraduate_person_id) REFERENCES person1(person_id)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
-	--if it doesn't work try changing REFERENCES Person1(person_id) to Undergraduates(student_person_id)
-	);
-----------------------------------------------
 CREATE TABLE Laboratories(
 	school VARCHAR (100),
 	lab_name VARCHAR (100),
@@ -94,8 +72,8 @@ CREATE TABLE ResearchLaboratories(
 	lab_name VARCHAR (100),
 	PRIMARY KEY (school, lab_name),
 	FOREIGN KEY (school, lab_name) REFERENCES Laboratories(school, lab_name)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
 	);
 ----------------------------------------------
 CREATE TABLE TeachingLaboratories(
@@ -103,10 +81,40 @@ CREATE TABLE TeachingLaboratories(
 	lab_name VARCHAR (100),
 	PRIMARY KEY (school, lab_name),
 	FOREIGN KEY (school, lab_name) REFERENCES Laboratories(school, lab_name)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
 	);
 --------------------------------------------------
+CREATE TABLE Research(
+	graduate_person_id CHAR(9),
+	school VARCHAR (100) DEFAULT 'NOT ASSIGNED',
+	lab_name VARCHAR (100) DEFAULT 'NOT ASSIGNED',
+	PRIMARY KEY (graduate_person_id, school, lab_name),
+	FOREIGN KEY (graduate_person_id) REFERENCES Person1(person_id)
+    ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	FOREIGN KEY (school, lab_name) REFERENCES ResearchLaboratories(school, lab_name)
+	ON DELETE SET DEFAULT
+	ON UPDATE CASCADE
+	--if it doesn't work try changing REFERENCES Person1(person_id) to Students(person_id)
+	); 
+-------------------------------------------
+CREATE TABLE Experiments(
+	undergraduate_person_id CHAR(9),
+	school VARCHAR(100) DEFAULT 'NOT ASSIGNED',
+	lab_name VARCHAR(100) DEFAULT 'NOT ASSIGNED',
+	conduct_date DATETIME,
+	attendance CHAR(1),
+	PRIMARY KEY (undergraduate_person_id, school, lab_name, conduct_date),
+	FOREIGN KEY (undergraduate_person_id) REFERENCES person1(person_id)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	FOREIGN KEY (school, lab_name) REFERENCES TeachingLaboratories(school, lab_name)
+	ON DELETE SET DEFAULT
+	ON UPDATE CASCADE
+	--if it doesn't work try changing REFERENCES Person1(person_id) to Undergraduates(student_person_id)
+	);
+----------------------------------------------
 CREATE TABLE Equipments2(
 	model_number VARCHAR (100),
 	name VARCHAR (100),
@@ -120,10 +128,11 @@ CREATE TABLE Equipments1(
 	model_number VARCHAR (100),
 	date_purchased DATE
 	PRIMARY KEY (lab_school, lab_name, id),
-	FOREIGN KEY (lab_school, lab_name) REFERENCES Laboratories(school, lab_name),
+	FOREIGN KEY (lab_school, lab_name) REFERENCES Laboratories(school, lab_name)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
 	FOREIGN KEY (model_number) REFERENCES Equipments2(model_number)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+
 	);
 ------------------------------------
 CREATE TABLE Staffs(
@@ -133,27 +142,29 @@ CREATE TABLE Staffs(
 	position VARCHAR (100),
 	PRIMARY KEY (person_id),
 	FOREIGN KEY (person_id) REFERENCES Person1(person_id) 
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
 	);
 --------------------------------------------------
 CREATE TABLE Administrative(
 	person_id CHAR(9),
 	PRIMARY KEY (person_id),
 	FOREIGN KEY (person_id) REFERENCES Person1(person_id)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
 	);
 ---------------------------------------------------
 CREATE TABLE Technical(
 	person_id CHAR(9), 
-	school VARCHAR (100),
-	lab_name VARCHAR (100),
+	school VARCHAR (100) DEFAULT 'NOT ASSIGNED',
+	lab_name VARCHAR (100) DEFAULT 'NOT ASSIGNED',
 	PRIMARY KEY (person_id, school, lab_name),
-	FOREIGN KEY (person_id) REFERENCES Person1 (person_id),
+	FOREIGN KEY (person_id) REFERENCES Person1 (person_id)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
 	FOREIGN KEY (school, lab_name) REFERENCES Laboratories (school, lab_name)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE SET DEFAULT
+	ON UPDATE CASCADE
 	);
 ---------------------------------------------------
 CREATE TABLE Stakeholders(
@@ -161,8 +172,8 @@ CREATE TABLE Stakeholders(
 	domain VARCHAR (100),
 	PRIMARY KEY (person_id),
 	FOREIGN KEY (person_id) REFERENCES Person1 (person_id)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE CASCADE --if person in record is deleted, deleted here
+	ON UPDATE CASCADE
 	);
 --------------------------------------------------
 CREATE TABLE CommentSuggestions(
@@ -171,14 +182,17 @@ CREATE TABLE CommentSuggestions(
 	topic VARCHAR (100),
 	PRIMARY KEY (stakeholder_person_id,date_time),
 	FOREIGN KEY (stakeholder_person_id) REFERENCES Person1 (person_id) -- if it doesn't work try changing to Stakeholders(person_id)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE CASCADE --if the person disappear, the comment should be too
+	ON UPDATE CASCADE 
 	);
 -----------------------------------------------------
 CREATE TABLE Professors(
 	person_id CHAR(9),
 	field_of_expertise VARCHAR (100),
-	PRIMARY KEY (person_id)
+	PRIMARY KEY (person_id),
+	FOREIGN KEY (person_id) REFERENCES Person1(person_id)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
 	);
 ------------------------------------------------------
 CREATE TABLE Courses(
@@ -186,18 +200,19 @@ CREATE TABLE Courses(
 	professor_person_id CHAR(9),
 	PRIMARY KEY (id),
 	FOREIGN KEY (professor_person_id) REFERENCES Professors(person_id)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE SET NULL
+	ON UPDATE CASCADE
 	);
 --------------------------------------------------------
 CREATE TABLE Attend(
 	student_person_id CHAR(9),
 	course_id CHAR(6),
 	PRIMARY KEY (student_person_id,course_id),
-	FOREIGN KEY (student_person_id) REFERENCES Person1 (person_id), -- if it doesn't work change it to Students(person_id)
-	FOREIGN KEY (course_id) REFERENCES Courses(id)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	FOREIGN KEY (student_person_id) REFERENCES Person1 (person_id)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE, -- if it doesn't work change it to Students(person_id)
+	CONSTRAINT FK_course1 FOREIGN KEY (course_id) REFERENCES Courses(id)
+	ON DELETE NO ACTION
 	);
 ------------------------------------------------------
 CREATE TABLE Timetables(
@@ -205,8 +220,8 @@ CREATE TABLE Timetables(
 	date_time DATETIME,
 	PRIMARY KEY (professor_person_id,date_time),
 	FOREIGN KEY (professor_person_id) REFERENCES Person1 (person_id)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	ON DELETE CASCADE --Deleting prof made this meaningless
+	ON UPDATE CASCADE 
 	);
 ------------------------------------------------------
 CREATE TABLE Contain(
@@ -214,10 +229,12 @@ CREATE TABLE Contain(
 	time_table_date_time DATETIME, 
 	course_id CHAR (6),
 	PRIMARY KEY (professor_person_id,time_table_date_time,course_id),
-	FOREIGN KEY (professor_person_id) REFERENCES Person1 (person_id),
-	FOREIGN KEY (professor_person_id, time_table_date_time) REFERENCES Timetables (professor_person_id, date_time),
-	FOREIGN KEY (course_id) REFERENCES Courses(id)
-	--ON DELETE SET NULL
-	--ON UPDATE CASCADE
+	FOREIGN KEY (professor_person_id) REFERENCES Person1 (person_id), --will propagate down from the below fk
+	FOREIGN KEY (professor_person_id, time_table_date_time) REFERENCES Timetables (professor_person_id, date_time)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	CONSTRAINT FK_course2 FOREIGN KEY (course_id) REFERENCES Courses(id)
+	ON DELETE NO ACTION
+	-- need trigger to delete
 	);
 -------------------------------------------------------

@@ -13,7 +13,7 @@ INSERT INTO ssp5g1.dbo.Cities VALUES('Melbourne', 'Florida');
 INSERT INTO ssp5g1.dbo.Cities VALUES('Hilo', 'Hawaii');
 INSERT INTO ssp5g1.dbo.Cities VALUES('Anderson', 'Indiana');
 INSERT INTO ssp5g1.dbo.Cities VALUES('Singapore', 'Singapore');
---------------------------------------------------------------------
+
 -- ssp5g1.dbo.Person2(address, zip, city_name, state_name)
 
 
@@ -119,7 +119,7 @@ INSERT INTO ssp5g1.dbo.Person1 VALUES ('S0286111R', 'Anupam Chattopadhyay', 'MAE
 
 INSERT INTO ssp5g1.dbo.Person1 VALUES ('S0562989W', 'Rainer Dumke', 'MSE', '82055456', 'rd0005@ntu.edu.sg', '111 Binjal Road 01-12');
 INSERT INTO ssp5g1.dbo.Person1 VALUES ('S2386121E', 'Ho Shen Yong', 'SPMS', '86767412', 'hsy0005@ntu.edu.sg', '22 Sesame Street 5 02-20');
-----------------------------------------------------------------------------------------------------------------------------
+
 -- ssp5g1.dbo.Students(person_id, student_id, admission_date, major_and_minor)
 
 -- Undergraduates
@@ -144,7 +144,7 @@ INSERT INTO ssp5g1.dbo.Students VALUES('G0237589F', '2000003', '2014-04-03', 'Bu
 INSERT INTO ssp5g1.dbo.Students VALUES('S9582767G', '2000004', '2012-04-15', 'Computer Engineering');
 INSERT INTO ssp5g1.dbo.Students VALUES('G0986589F', '2000005', '2013-03-01', 'Biomedical Engineering');
 INSERT INTO ssp5g1.dbo.Students VALUES('S9847267G', '2000006', '2014-04-06', 'Aerospace Engineering');
--------------------------------------------------------------------------------------------------------------------------------------
+
 -- ssp5g1.dbo.Undergraduates(student_person_id)
 
 INSERT INTO ssp5g1.dbo.Undergraduates VALUES ('S9278576G');
@@ -160,7 +160,7 @@ INSERT INTO ssp5g1.dbo.Undergraduates VALUES ('G0283746T');
 INSERT INTO ssp5g1.dbo.Undergraduates VALUES ('G0385762H');
 INSERT INTO ssp5g1.dbo.Undergraduates VALUES ('G8362519J');
 INSERT INTO ssp5g1.dbo.Undergraduates VALUES ('G0286804R');
-----------------------------------------------------------------------------------------------------------------------------------------
+
 -- ssp5g1.dbo.Graduates(student_person_id, professor_person_id, research_topic)
 
 --Computer Science(take course and research)
@@ -183,7 +183,98 @@ INSERT INTO ssp5g1.dbo.Graduates VALUES ('G0986589F', 'S0286111R', 'Thermal Cond
 
 --Aerospace Engineering(take course only)
 INSERT INTO ssp5g1.dbo.Graduates VALUES ('S9847267G', 'S0286111R', NULL);
------------------------------------------------------------------------------------------------------------------------
+
+-- ssp5g1.dbo.Research(graduate_person_id, school, lab_name)
+
+--computer science
+INSERT INTO ssp5g1.dbo.Research VALUES ('S9283742H', 'SCSE', 'Data Management and Analytics Lab');
+
+--enviromental engineering
+INSERT INTO ssp5g1.dbo.Research VALUES ('S9487271Y', 'CEE', 'Environment Laboratory');
+
+--business, doing business and data analytics
+INSERT INTO ssp5g1.dbo.Research VALUES ('G0237589F', 'NBS', 'Communication Laboratory 1');
+INSERT INTO ssp5g1.dbo.Research VALUES ('G0237589F', 'SCSE', 'Computational Intelligence Lab');
+
+--computer engineering
+INSERT INTO ssp5g1.dbo.Research VALUES ('S9582767G', 'SCSE', 'Computational Intelligence Lab');
+
+--biomedical, doing process systems engineering and thermal conductivity
+INSERT INTO ssp5g1.dbo.Research VALUES ('G0986589F', 'SCBE', 'NTU Food Technology Centre');
+INSERT INTO ssp5g1.dbo.Research VALUES ('G0986589F', 'MAE', 'ST Engineering-NTU Corporate Lab');
+
+--aerospace
+INSERT INTO ssp5g1.dbo.Research VALUES ('S9847267G', 'MAE', 'ST Engineering-NTU Corporate Lab');
+
+-- ssp5g1.dbo.Experiments(undergraduate_person_id, school, lab_name, conduct_date, attendance)
+
+-- Attendance for S9278576G
+INSERT INTO ssp5g1.dbo.Experiments VALUES('S9278576G', 'SCSE', 'Software Lab 1', '2019-09-23 14:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('S9278576G', 'SCSE', 'Software Lab 1', '2019-09-30 14:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('S9278576G', 'SCSE', 'Software Lab 1', '2019-10-07 14:30:00', 'A');
+
+-- Attendance for S9641234H
+INSERT INTO ssp5g1.dbo.Experiments VALUES('S9641234H', 'SCSE', 'Hardware Lab 3', '2019-09-24 09:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('S9641234H', 'SCSE', 'Hardware Lab 3', '2019-10-01 09:30:00', 'A');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('S9641234H', 'SCSE', 'Hardware Lab 3', '2019-10-08 09:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('S9641234H', 'SCSE', 'Hardware Lab 3', '2019-10-15 09:30:00', 'P');
+
+-- Attendance for G0384723F
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G0384723F', 'NBS', 'IT Laboratory 1', '2019-09-02 12:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G0384723F', 'NBS', 'IT Laboratory 1', '2019-09-09 12:30:00', 'P');
+
+-- Attendance for S9472812H
+INSERT INTO ssp5g1.dbo.Experiments VALUES('S9472812H', 'SCBE', 'Computer Lab 1', '2019-09-10 13:30:00', 'A');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('S9472812H', 'SCBE', 'Computer Lab 1', '2019-09-17 13:30:00', 'A');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('S9472812H', 'SCBE', 'Computer Lab 1', '2019-09-24 13:30:00', 'A');
+
+-- Attendance for S9245661F
+INSERT INTO ssp5g1.dbo.Experiments VALUES('S9245661F', 'SCSE', 'Software Lab 3', '2019-09-12 09:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('S9245661F', 'SCSE', 'Software Lab 3', '2019-09-19 09:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('S9245661F', 'SCSE', 'Software Lab 1', '2019-09-26 09:30:00', 'P');
+
+-- Attendance for S9576123H
+INSERT INTO ssp5g1.dbo.Experiments VALUES('S9576123H', 'CEE', 'Environmental Laboratory', '2019-09-20 10:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('S9576123H', 'CEE', 'Environmental Laboratory', '2019-09-27 10:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('S9576123H', 'CEE', 'Environmental Laboratory', '2019-10-04 10:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('S9576123H', 'CEE', 'Environmental Laboratory', '2019-10-11 10:30:00', 'A');
+
+-- Attendance for G9728421F
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G9728421F', 'SCSE', 'Hardware Project Lab', '2019-09-11 09:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G9728421F', 'SCSE', 'Hardware Project Lab', '2019-09-18 09:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G9728421F', 'SCSE', 'Software Project Lab', '2019-09-25 09:30:00', 'A');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G9728421F', 'SCSE', 'Hardware Project Lab', '2019-10-02 09:30:00', 'A');
+
+-- Attendance for G9287276F
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G9287276F', 'CEE', 'Environmental Laboratory', '2019-09-11 09:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G9287276F', 'CEE', 'Environmental Laboratory', '2019-09-18 09:30:00', 'P');
+
+-- Attendance for G9412356H
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G9412356H', 'NBS', 'IT Laboratory 2', '2019-09-18 14:30:00', 'A');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G9412356H', 'NBS', 'IT Laboratory 3', '2019-09-25 14:30:00', 'A');
+
+-- Attendance for G0283746T
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G0283746T', 'HSS', 'Computer Lab 5', '2019-09-11 14:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G0283746T', 'HSS', 'Computer Lab 4', '2019-09-17 14:30:00', 'A');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G0283746T', 'HSS', 'Computer Lab 1', '2019-09-24 14:30:00', 'A');
+
+-- Attendance for G0385762H
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G0385762H', 'SCSE', 'Software Lab 1', '2019-09-02 13:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G0385762H', 'SCSE', 'Software Lab 1', '2019-09-09 13:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G0385762H', 'SCSE', 'Software Lab 1', '2019-09-16 13:30:00', 'P');
+
+-- Attendance for G8362519J
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G8362519J', 'CEE', 'Environmentaly Laboratory', '2019-09-20 10:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G8362519J', 'CEE', 'Environmentaly Laboratory', '2019-09-27 10:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G8362519J', 'CEE', 'Environmentaly Laboratory', '2019-10-04 10:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G8362519J', 'CEE', 'Environmentaly Laboratory', '2019-10-11 10:30:00', 'P');
+
+
+-- Attendance for G0286804R
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G0286804R', 'MAE', 'Maker Lab', '2019-09-21 10:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G0286804R', 'MAE', 'Maker Lab', '2019-09-28 10:30:00', 'P');
+INSERT INTO ssp5g1.dbo.Experiments VALUES('G0286804R', 'MAE', 'Maker Lab', '2019-10-05 10:30:00', 'P');
+
 -- ssp5g1.dbo.Laboratories (school, lab_name, location)
 
 -- Experiment Labs
@@ -233,98 +324,6 @@ INSERT INTO ssp5g1.dbo.TeachingLaboratories VALUES('HSS', 'Computer Lab 5');
 INSERT INTO ssp5g1.dbo.TeachingLaboratories VALUES('HSS', 'Computer Lab 4');
 INSERT INTO ssp5g1.dbo.TeachingLaboratories VALUES('HSS', 'Computer Lab 1');
 INSERT INTO ssp5g1.dbo.TeachingLaboratories VALUES('MAE', 'Maker Lab');
-
--- ssp5g1.dbo.Research(graduate_person_id, school, lab_name)
-
---computer science
-INSERT INTO ssp5g1.dbo.Research VALUES ('S9283742H', 'SCSE', 'Data Management and Analytics Lab');
-
---enviromental engineering
-INSERT INTO ssp5g1.dbo.Research VALUES ('S9487271Y', 'CEE', 'Environment Laboratory');
-
---business, doing business and data analytics
-INSERT INTO ssp5g1.dbo.Research VALUES ('G0237589F', 'NBS', 'Communication Laboratory 1');
-INSERT INTO ssp5g1.dbo.Research VALUES ('G0237589F', 'SCSE', 'Computational Intelligence Lab');
-
---computer engineering
-INSERT INTO ssp5g1.dbo.Research VALUES ('S9582767G', 'SCSE', 'Computational Intelligence Lab');
-
---biomedical, doing process systems engineering and thermal conductivity
-INSERT INTO ssp5g1.dbo.Research VALUES ('G0986589F', 'SCBE', 'NTU Food Technology Centre');
-INSERT INTO ssp5g1.dbo.Research VALUES ('G0986589F', 'MAE', 'ST Engineering-NTU Corporate Lab');
-
---aerospace
-INSERT INTO ssp5g1.dbo.Research VALUES ('S9847267G', 'MAE', 'ST Engineering-NTU Corporate Lab');
---------------------------------------------------------------------------------------------------------------------------
--- ssp5g1.dbo.Experiments(undergraduate_person_id, school, lab_name, conduct_date, attendance)
-
--- Attendance for S9278576G
-INSERT INTO ssp5g1.dbo.Experiments VALUES('S9278576G', 'SCSE', 'Software Lab 1', '2019-09-23 14:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('S9278576G', 'SCSE', 'Software Lab 1', '2019-09-30 14:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('S9278576G', 'SCSE', 'Software Lab 1', '2019-10-07 14:30:00', 'A');
-
--- Attendance for S9641234H
-INSERT INTO ssp5g1.dbo.Experiments VALUES('S9641234H', 'SCSE', 'Hardware Lab 3', '2019-09-24 09:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('S9641234H', 'SCSE', 'Hardware Lab 3', '2019-10-01 09:30:00', 'A');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('S9641234H', 'SCSE', 'Hardware Lab 3', '2019-10-08 09:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('S9641234H', 'SCSE', 'Hardware Lab 3', '2019-10-15 09:30:00', 'P');
-
--- Attendance for G0384723F
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G0384723F', 'NBS', 'IT Laboratory 1', '2019-09-02 12:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G0384723F', 'NBS', 'IT Laboratory 1', '2019-09-09 12:30:00', 'P');
-
--- Attendance for S9472812H
-INSERT INTO ssp5g1.dbo.Experiments VALUES('S9472812H', 'SCBE', 'Computer Lab 1', '2019-09-10 13:30:00', 'A');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('S9472812H', 'SCBE', 'Computer Lab 1', '2019-09-17 13:30:00', 'A');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('S9472812H', 'SCBE', 'Computer Lab 1', '2019-09-24 13:30:00', 'A');
-
--- Attendance for S9245661F
-INSERT INTO ssp5g1.dbo.Experiments VALUES('S9245661F', 'SCSE', 'Software Lab 3', '2019-09-12 09:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('S9245661F', 'SCSE', 'Software Lab 3', '2019-09-19 09:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('S9245661F', 'SCSE', 'Software Lab 1', '2019-09-26 09:30:00', 'P');
-
--- Attendance for S9576123H
-INSERT INTO ssp5g1.dbo.Experiments VALUES('S9576123H', 'CEE', 'Environmental Laboratory', '2019-09-20 10:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('S9576123H', 'CEE', 'Environmental Laboratory', '2019-09-27 10:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('S9576123H', 'CEE', 'Environmental Laboratory', '2019-10-04 10:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('S9576123H', 'CEE', 'Environmental Laboratory', '2019-10-11 10:30:00', 'A');
-
--- Attendance for G9728421F
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G9728421F', 'SCSE', 'Hardware Project Lab', '2019-09-11 09:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G9728421F', 'SCSE', 'Hardware Project Lab', '2019-09-18 09:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G9728421F', 'SCSE', 'Hardware Project Lab', '2019-09-25 09:30:00', 'A');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G9728421F', 'SCSE', 'Hardware Project Lab', '2019-10-02 09:30:00', 'A');
-
--- Attendance for G9287276F
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G9287276F', 'CEE', 'Environmental Laboratory', '2019-09-11 09:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G9287276F', 'CEE', 'Environmental Laboratory', '2019-09-18 09:30:00', 'P');
-
--- Attendance for G9412356H
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G9412356H', 'NBS', 'IT Laboratory 2', '2019-09-18 14:30:00', 'A');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G9412356H', 'NBS', 'IT Laboratory 3', '2019-09-25 14:30:00', 'A');
-
--- Attendance for G0283746T
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G0283746T', 'HSS', 'Computer Lab 5', '2019-09-11 14:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G0283746T', 'HSS', 'Computer Lab 4', '2019-09-17 14:30:00', 'A');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G0283746T', 'HSS', 'Computer Lab 1', '2019-09-24 14:30:00', 'A');
-
--- Attendance for G0385762H
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G0385762H', 'SCSE', 'Software Lab 1', '2019-09-02 13:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G0385762H', 'SCSE', 'Software Lab 1', '2019-09-09 13:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G0385762H', 'SCSE', 'Software Lab 1', '2019-09-16 13:30:00', 'P');
-
--- Attendance for G8362519J
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G8362519J', 'CEE', 'Environmental Laboratory', '2019-09-20 10:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G8362519J', 'CEE', 'Environmental Laboratory', '2019-09-27 10:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G8362519J', 'CEE', 'Environmental Laboratory', '2019-10-04 10:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G8362519J', 'CEE', 'Environmental Laboratory', '2019-10-11 10:30:00', 'P');
-
-
--- Attendance for G0286804R
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G0286804R', 'MAE', 'Maker Lab', '2019-09-21 10:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G0286804R', 'MAE', 'Maker Lab', '2019-09-28 10:30:00', 'P');
-INSERT INTO ssp5g1.dbo.Experiments VALUES('G0286804R', 'MAE', 'Maker Lab', '2019-10-05 10:30:00', 'P');
-
 
 -- Equipments 2 (model_number,name) model_number is primary key
 
